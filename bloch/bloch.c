@@ -1,8 +1,9 @@
 #include <stdio.h>
 #include <math.h>
 
-#define GAMMA   26753.0
-#define TWOPI	6.283185
+// Work in Hz so as to be suitable for use with all nuclei.
+#define TWOPI  6.28318530717959
+#define GAMMA  TWOPI
 
 #define DEBUG
 

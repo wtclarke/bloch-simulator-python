@@ -1,12 +1,16 @@
 import numpy as np
-import scipy as sp
 
 from bloch.bloch_simulator import bloch_c
 
 from bloch.bloch_processing import NUMBER
-from bloch.bloch_processing import process_gradient_argument, process_time_points, process_off_resonance_arguments
-from bloch.bloch_processing import process_positions, process_magnetization, reshape_matrices
+from bloch.bloch_processing import process_gradient_argument
+from bloch.bloch_processing import process_time_points
+from bloch.bloch_processing import process_off_resonance_arguments
+from bloch.bloch_processing import process_positions
+from bloch.bloch_processing import process_magnetization
+from bloch.bloch_processing import reshape_matrices
 from bloch.bloch_processing import process_relaxations
+
 
 def bloch(b1, gr, tp, t1, t2, df, dp, mode, mx=None, my=None, mz=None):
     """
@@ -17,8 +21,8 @@ def bloch(b1, gr, tp, t1, t2, df, dp, mode, mx=None, my=None, mz=None):
     is applied repeatedly, or the magnetization starting at m0.
 
     INPUT:
-            b1 = (1xM) RF pulse in G.  Can be complex.
-            gr = ((1,2,or 3)xM) 1,2 or 3-dimensional gradient in G/cm.
+            b1 = (1xM) RF pulse in Hz.  Can be complex.
+            gr = ((1,2,or 3)xM) 1,2 or 3-dimensional gradient in Hz/cm.
             tp = (1xM) time duration of each b1 and gr point, in seconds,
                             or 1x1 time step if constant for all points
                             or monotonically INCREASING endtime of each
@@ -57,7 +61,13 @@ def bloch(b1, gr, tp, t1, t2, df, dp, mode, mx=None, my=None, mz=None):
     else:
         ntout = 1
 
-    bloch_c(b1.real, b1.imag, grx, gry, grz, tp, ntime, t1, t2, df, nf, dx, dy, dz, n_pos, mode, mx, my, mz)
+    bloch_c(b1.real, b1.imag,
+            grx, gry, grz,
+            tp, ntime,
+            t1, t2,
+            df, nf,
+            dx, dy, dz, n_pos,
+            mode, mx, my, mz)
 
     reshape_matrices(mx, my, mz, ntout, n_pos, nf)
     return mx, my, mz
