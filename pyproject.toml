@@ -1,0 +1,30 @@
+[build-system]
+requires = [
+    "setuptools>=61.0",
+    "cython",
+    "numpy >= 2"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "Bloch-Simulator-Library-WTC"
+version = "1.0"
+authors = [
+  { name="Niraj Amalkant", email="namalkanti@gmail.com" },
+  { name="Will Clarke ", email="william.clarke@ndcn.ox.ac.uk" }
+]
+description = "Bloch Simulator and helper modules. Originally written by Brian Hargreaves."
+readme = "README.md"
+requires-python = ">=3.10"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent"
+]
+dependencies=[
+    "numpy>=2",
+    "scipy",
+    "matplotlib",
+]
+
+[project.urls]
+Homepage = "https://github.com/wtclarke/bloch-simulator-python"
+Issues = "https://github.com/wtclarke/bloch-simulator-python/issues"

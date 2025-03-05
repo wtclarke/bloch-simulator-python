@@ -1,12 +1,13 @@
 import os.path
-import unittest 
+import unittest
 
 import numpy as np
 import scipy.io as sio
 
 from bloch.bloch import bloch
 
-TEST_DIR = "test_data"
+from pathlib import Path
+TEST_DIR = Path(__file__).parent / "test_data"
 
 class BlochTest(unittest.TestCase):
     """
