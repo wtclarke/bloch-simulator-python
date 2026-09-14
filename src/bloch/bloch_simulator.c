@@ -1,4 +1,4 @@
-#define NPY_1_7_API_VERSION 0x00000007
+#define NPY_NO_DEPRECATED_API NPY_1_7_API_VERSION
 #include <Python.h>
 #include <numpy/arrayobject.h>
 
@@ -18,7 +18,7 @@ static PyObject* bloch(PyObject *self, PyObject *args){
     PyObject *py_mx, *py_my, *py_mz;
 
     //Bloch sim arugments declarations
-    PyObject *b1_real_arr, *b1_imag_arr, *grx_arr, *gry_arr, *grz_arr, *tp_arr, *t1_arr, *t2_arr, *df_arr, *dx_arr, *dy_arr, *dz_arr, *mx_arr, *my_arr, *mz_arr;
+    PyArrayObject *b1_real_arr, *b1_imag_arr, *grx_arr, *gry_arr, *grz_arr, *tp_arr, *t1_arr, *t2_arr, *df_arr, *dx_arr, *dy_arr, *dz_arr, *mx_arr, *my_arr, *mz_arr;
     int ntime;
     double *b1_real, *b1_imag, *grx, *gry, *grz, *tp, *t1, *t2, *df, *dx, *dy, *dz, *mx, *my, *mz;
 
@@ -27,21 +27,21 @@ static PyObject* bloch(PyObject *self, PyObject *args){
         return NULL;
     }
 
-    b1_real_arr = PyArray_FROM_OTF(py_b1_real, NPY_DOUBLE, NPY_IN_ARRAY);
-    b1_imag_arr = PyArray_FROM_OTF(py_b1_imag, NPY_DOUBLE, NPY_IN_ARRAY);
-    grx_arr = PyArray_FROM_OTF(py_grx, NPY_DOUBLE, NPY_IN_ARRAY);
-    gry_arr = PyArray_FROM_OTF(py_gry, NPY_DOUBLE, NPY_IN_ARRAY);
-    grz_arr = PyArray_FROM_OTF(py_grz, NPY_DOUBLE, NPY_IN_ARRAY);
-    tp_arr = PyArray_FROM_OTF(py_tp, NPY_DOUBLE, NPY_IN_ARRAY);
-    t1_arr = PyArray_FROM_OTF(py_t1, NPY_DOUBLE, NPY_IN_ARRAY);
-    t2_arr = PyArray_FROM_OTF(py_t2, NPY_DOUBLE, NPY_IN_ARRAY);
-    df_arr = PyArray_FROM_OTF(py_df, NPY_DOUBLE, NPY_IN_ARRAY);
-    dx_arr = PyArray_FROM_OTF(py_dx, NPY_DOUBLE, NPY_IN_ARRAY);
-    dy_arr = PyArray_FROM_OTF(py_dy, NPY_DOUBLE, NPY_IN_ARRAY);
-    dz_arr = PyArray_FROM_OTF(py_dz, NPY_DOUBLE, NPY_IN_ARRAY);
-    mx_arr = PyArray_FROM_OTF(py_mx, NPY_DOUBLE, NPY_INOUT_ARRAY);
-    my_arr = PyArray_FROM_OTF(py_my, NPY_DOUBLE, NPY_INOUT_ARRAY);
-    mz_arr = PyArray_FROM_OTF(py_mz, NPY_DOUBLE, NPY_INOUT_ARRAY);
+    b1_real_arr = (PyArrayObject *) PyArray_FROM_OTF(py_b1_real, NPY_DOUBLE, NPY_ARRAY_IN_ARRAY);
+    b1_imag_arr = (PyArrayObject *) PyArray_FROM_OTF(py_b1_imag, NPY_DOUBLE, NPY_ARRAY_IN_ARRAY);
+    grx_arr = (PyArrayObject *) PyArray_FROM_OTF(py_grx, NPY_DOUBLE, NPY_ARRAY_IN_ARRAY);
+    gry_arr = (PyArrayObject *) PyArray_FROM_OTF(py_gry, NPY_DOUBLE, NPY_ARRAY_IN_ARRAY);
+    grz_arr = (PyArrayObject *) PyArray_FROM_OTF(py_grz, NPY_DOUBLE, NPY_ARRAY_IN_ARRAY);
+    tp_arr = (PyArrayObject *) PyArray_FROM_OTF(py_tp, NPY_DOUBLE, NPY_ARRAY_IN_ARRAY);
+    t1_arr = (PyArrayObject *) PyArray_FROM_OTF(py_t1, NPY_DOUBLE, NPY_ARRAY_IN_ARRAY);
+    t2_arr = (PyArrayObject *) PyArray_FROM_OTF(py_t2, NPY_DOUBLE, NPY_ARRAY_IN_ARRAY);
+    df_arr = (PyArrayObject *) PyArray_FROM_OTF(py_df, NPY_DOUBLE, NPY_ARRAY_IN_ARRAY);
+    dx_arr = (PyArrayObject *) PyArray_FROM_OTF(py_dx, NPY_DOUBLE, NPY_ARRAY_IN_ARRAY);
+    dy_arr = (PyArrayObject *) PyArray_FROM_OTF(py_dy, NPY_DOUBLE, NPY_ARRAY_IN_ARRAY);
+    dz_arr = (PyArrayObject *) PyArray_FROM_OTF(py_dz, NPY_DOUBLE, NPY_ARRAY_IN_ARRAY);
+    mx_arr = (PyArrayObject *) PyArray_FROM_OTF(py_mx, NPY_DOUBLE, NPY_ARRAY_INOUT_ARRAY);
+    my_arr = (PyArrayObject *) PyArray_FROM_OTF(py_my, NPY_DOUBLE, NPY_ARRAY_INOUT_ARRAY);
+    mz_arr = (PyArrayObject *) PyArray_FROM_OTF(py_mz, NPY_DOUBLE, NPY_ARRAY_INOUT_ARRAY);
 
     b1_real = (double *) PyArray_DATA(b1_real_arr);
     b1_imag = (double *) PyArray_DATA(b1_imag_arr);
